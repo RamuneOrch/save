@@ -53,7 +53,7 @@ export default {
   created(){
     window.addEventListener("load", setTimeout(() => {
         this.isDisabled = false
-    },1000))
+    },1100))
   },
   data(){
     return{
