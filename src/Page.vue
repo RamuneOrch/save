@@ -51,7 +51,9 @@ import 'hooper/dist/hooper.css';
 
 export default {
   created(){
-
+    setTimeout(() => {
+        this.isDisabled = true
+    },2000)
   },
   data(){
     return{

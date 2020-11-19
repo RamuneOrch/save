@@ -61,7 +61,7 @@
         <div class="fixed-bottom">
           <div class="p-3 d-flex flex-row rounded-top" style="max-width : 600px; margin : auto; background-color : #ffbc4b">
             <div class="text-center rounded" style="width : 85%; border : 2px solid white;" @click="playStore()">
-              <a href="https://play.google.com/store/apps/details?id=com.jjang.bangpan2&hl=ko" class="" style="" >
+              <a href="https://bit.ly/3cp1b6g" class="" style="" >
                 <p class="m-0 p-2 font-weight-bold" style="color : white; font-size : 17px">화장품 추천!</p>
               </a>
             </div>
@@ -99,9 +99,9 @@ export default {
       window.open(`./`,"_self")
     },
     playStore(){
-      alert("스토어 페이지로 이동합니다.")
-      window.open(`https://play.google.com/store/apps/details?id=com.jjang.bangpan2&hl=ko`,"_self")
-    }
+      window.open(`https://bit.ly/3cp1b6g`,"_self")
+    },
+    
   }
 }
 </script>
