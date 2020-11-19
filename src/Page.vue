@@ -51,9 +51,9 @@ import 'hooper/dist/hooper.css';
 
 export default {
   created(){
-    setTimeout(() => {
-        this.isDisabled = true
-    },2000)
+    window.addEventListener("load", setTimeout(() => {
+        this.isDisabled = false
+    },1000))
   },
   data(){
     return{
@@ -63,7 +63,7 @@ export default {
       btnResult : 0,
       sample,
       result : Number(this.query),
-      isDisabled : false
+      isDisabled : true
     }
   },
   components:{
