@@ -9,6 +9,12 @@
             >
                 
     </loading>
+    <img src="./Spinner-1s-200px.gif" alt="" width="100px;" 
+        style="position: absolute; top:45% ;left: 50%; transform:translateX(-50%);">
+
+    <!-- <button @click="doAjax">
+        1
+    </button> -->
   </div>
 </template>
 
@@ -20,7 +26,7 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     created(){
-        console.log("Hello");
+        // console.log("Hello");
         window.addEventListener("load", this.doAjax)
     },
     props:{
@@ -38,10 +44,10 @@ export default {
     },
     methods: {
         doAjax() {
-            this.isLoading = true;
+            // this.isLoading = true;
             // simulate AJAX
             setTimeout(() => {
-                this.isLoading = false
+                // this.isLoading = false
                 window.open(`./result?id=${this.result}`,"_self")
             },3000)
         },
@@ -50,7 +56,7 @@ export default {
         },
         pageChange(){
             this.isLoading = false
-            window.open(`./result?id=${this.result}`,"_self")
+            // window.open(`./result?id=${this.result}`,"_self")
         }
     },
 }
