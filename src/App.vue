@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="background-color : black;">
+  <div id="app" class="main1">
       <router-view />
   </div>
 </template>
@@ -11,5 +11,5 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 </style>
