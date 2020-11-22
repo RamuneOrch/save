@@ -58,7 +58,7 @@ export default {
       setTimeout(() => {
         this.isDisabled = false
       },900)
-      const BASE_URI = "https://admin.cosmeticfitting.com:4000"
+      const BASE_URI = "http://admin.cosmeticfitting.com:4000"
       this.$http.post(`${BASE_URI}/user/survey`)
       .then(res => {
         this.rest = res.data.list
