@@ -59,7 +59,7 @@ export default {
       count : 0,
       customers : 0,
       id : 0,
-      cookiee : []
+      cookiee : 231456
     }
   },
   created(){
@@ -67,23 +67,36 @@ export default {
         this.$http.post(`http://admin.cosmeticfitting.com:4000/user/survey`)
         .then(res => {
           this.people = res.data.count
-          console.log(res.data.count);
+          console.log(res.data.list);
         })
 
         this.$cookies.remove("test")
         this.$cookies.remove("restart")
         this.$cookies.remove("share")
         this.$cookies.remove("countmain")
+        this.$cookies.remove("key")
         this.$cookies.remove("countsub")
       }
 
   },
   methods:{
     clickPage(){
-      this.people++
-      this.$cookies.set("test", this.people)
+      this.$cookies.set("key", 1)
+      setTimeout(() => {
+        this.$http.post(`http://admin.cosmeticfitting.com:4000/user/survey_start`)
+        .then(res => {
+          this.cookiee = res.data.id
+          console.log(this.cookiee);
+        })
+      },100)
+
       
-      window.open(`./page`,"_self")
+
+
+      setTimeout(() => {
+        this.$cookies.set("test",this.cookiee)
+        window.open(`./page`,"_self")
+      },500)
     }
   }
 }
@@ -102,7 +115,7 @@ export default {
         font-family:'Noto Sans KR', sans-serif;
       }
       .main{
-        background-image: url("./img/bg2.png");
+        background-image: url("./img/C.png");
         background-position : center bottom;
         background-repeat: no-repeat;
         background-size: 100%;

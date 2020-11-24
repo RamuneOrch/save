@@ -1,82 +1,123 @@
 <template>
-  <div class="d-flex flex-column bg-white" 
-    style="max-width : 600px; margin : auto; padding : 50px 20px 80px 20px;">
-      <div v-if="true">
-        <div class="pt-4 text-center">
-          <h2 class="font-weight-bold">당신은 이런 사람!</h2>
-          <strong style="font-size : 21px; margin-top : 15px;">쩌리형 고자</strong>
-          <div class="rounded mt-4 p-3" style="height : 300px;">
-              <img src="https://d29dbfyawlamz6.cloudfront.net/static_v1.8.11/img/test_content/chunmyung/results/ISFP.png" alt="1" width="230px;">
+  <div>
+    <div v-if="this.page === 0" class="d-flex flex-column bg-white pl-4 pr-4 p-4"
+    style="max-width : 600px; margin : auto; margin-bottom : 15%;"
+    >
+      <div v-if="true" style="color : #6e7da0">
+        <div class="pt-4 text-center" style="margin-top : 17%; 'Noto Sans KR',sans serif;">
+          <img src="./img/fitting.png" alt="" style=" margin-bottom : 20px; ">
+          <p class="m-0" style="font-size : 18px; font-family : 'Noto Sans KR',sans serif;">
+            {{ this.result }} 피부타입에 잘 맞는 화장품
+          </p>
+          <p class="m-0" style="line-height : 48px; font-size : 40px; margin-top : 15px; font-weight:700;font-family :  'Noto Sans KR',sans serif;">{{ }}</p>
+          <div class="rounded m-0" style="">
+              <img src="" alt="1" width="100%">
               </div>
           </div>
 
-        <div class="p-4 mt-3 rounded bg-light" >
+        <div class="pl-3 pr-3 text-center">
+            <p class="mb-4"
+               style="
+                  font-family: 'Noto Sans KR', sans serif;
+                  font-size: 21px;
+                  font-weight: 500;
+                  font-stretch: normal;
+                  font-style: normal;
+                  line-height: 1.4;
+                  letter-spacing: normal;
+                  text-align: center;
+                  color: #ffa05a;
+               "
+            >
+              {{}}
+            </p>
+        </div>
+
+        <div class="" style="padding : 20px; border-radius : 13px; border: solid 2px #6f7e9f; background-color : rgba(145, 160, 200, 0.05);">
           <div>
-            <p class="font-weight-bold">Type.</p>
-            <ul>
-              <li v-for="(people, index) in type" :key="index">
-                {{ people.info }}
+
+            <ul class="pl-4 m-0" style="color : ">
+              <!-- <li v-for="(people, index) in type" :key="index">
+                {{ people.type_info }} -->
+              <!-- </li> -->
+              <li>
+                <p>
+                  피부가 감성적이에요. 가을을 타요. 일단 찬바람 불면 립밤은 필수에요.
+                </p>
               </li>
+              <li>
+                <p>
+                  처음 보는 화장품은 나에겐 두려움의 대상. 일단 겁부터 나요. 따갑거나 얼굴이 뒤집어지거나 어떤 후폭풍이 올지 몰라요.
+                </p>
+              </li>
+              <li>
+                <p>
+                  환경이 바뀌는 매 순간마다 내 피부에 어떤 문제가 튀어나올지 몰라요. 고통의 연속.
+                </p>
+              </li>
+              <li>
+                <p>
+                  반복되는 피부 염증으로 피부색이 고르지 않아 속상해요. 이놈의 색소 침착.. 레이저 치료가 효과가 있다 해서 알아보는 중이에요!
+                </p>
+              </li>
+              <li>
+                <p>
+                  피부가 거칠고 칙칙해 보이기도 하지만, 그래도 피부 탄력만큼은 자신 있어요!
+                </p>
+              </li>
+              
             </ul>
           </div>
         </div>
 
-        <div class="bg-light mt-3 p-4 bg-light rounded">
-          <p class="font-weight-bold">Tip.</p>
-          <ul>
-            <li v-for="(people, index) in tip" :key="index">
-              {{ people.info}}
-            </li>
-          </ul>
-        </div>
-
-        <div class="mt-3">
-          <div class="p-3 bg-light text-center">
-            <p class="font-weight-bold">내 결과 공유하기</p>
-            <p class="m-0">
-              <img src="https://d29dbfyawlamz6.cloudfront.net/static_v1.8.11/img/SNS/kakaotalk-logo%402x.png" alt="" width="55px" @click="share()">
-              <img src="https://d29dbfyawlamz6.cloudfront.net/static_v1.8.11/img/SNS/url-icon%402x.png" alt=""  width="55px" @click="clip()" class="ml-3">
+        <div class="mt-2 w-100">
+          <div class="p-3">
+            <p class="m-auto text-center" style="color : #696969; font-size : 22px; font-family :  'Noto Sans KR',sans serif; line-height: 1.5;">
+              지금  <strong>피부컨설팅:피팅</strong>에서<br>
+              <strong>휴엔맘 크림</strong> 경험하고<br>
+              리얼한 후기를 남겨주세요!
             </p>
           </div>
         </div>
 
-        <div class="mt-3">
-          <div class="p-3 d-flex flex-column justify-content-center align-items-center">
-            <button class="mb-4 w-100" @click="retest()">
-              <strong style="font-size : 19px;">테스트 다시하기</strong>
+        <div class="mt-3 p-1">
+          <div class="p-3 bg-white text-center" style="border-radius : 30px; border : solid 2px #6e7da0;">
+            <p class="" style="font-size : 19px; font-weight : 700; font-family : 'Noto Sans KR',sans serif;color : #696969;">내 결과 공유하기</p>
+            <p class="m-0">
+              <img src="https://d29dbfyawlamz6.cloudfront.net/static_v1.8.11/img/SNS/kakaotalk-logo%402x.png" alt="" width="48px" @click="share()">
+              <img src="https://d29dbfyawlamz6.cloudfront.net/static_v1.8.11/img/SNS/url-icon%402x.png" alt=""  width="48px" @click="clip()" class="" style="margin-left : 35px;">
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-3 w-100">
+          <div class="mb-4 mt-4 d-flex flex-column justify-content-center align-items-center w-100">
+            <button class="mb-4 w-100 rounded-pill p-3 w-100" @click="retest()">
+              <p class="m-0" style="font-size : 26px; font-weight : 500; font-family : 'Noto Sans KR',sans serif; ">테스트 다시하기</p>
             </button>
           </div>
         </div>
         
 
         <div class="fixed-bottom">
-          <div class="p-3 d-flex flex-row rounded-top" style="max-width : 600px; margin : auto; background-color : #ffbc4b">
-            <div class="text-center rounded" style="width : 100%; border : 2px solid white; cursor : pointer" @click="playStore(1)">
-                <p class="m-0 p-2 font-weight-bold" style="color : white; font-size : 17px">화장품 추천!</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header align-items-center">
-                <h5 class="modal-title text-center" id="exampleModalLongTitle">
-                  나의 결과를 공유!
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="p-3 m-auto">
-                <img src="https://d29dbfyawlamz6.cloudfront.net/static_v1.8.11/img/SNS/kakaotalk-logo%402x.png" alt="" width="55px" @click="share()">
-                <img src="https://d29dbfyawlamz6.cloudfront.net/static_v1.8.11/img/SNS/url-icon%402x.png" alt="" width="55px" class="ml-3" @click="clip()">
-              </div>
+          <div class="d-flex flex-row p-3 pl-4 pr-4" style="max-width : 600px; margin : auto; background-color :#6e7da0">
+            <div class="text-center rounded-pill" style="width : 100%; border : 2px solid white; cursor : pointer" @click="playStore(1)">
+                <p class="m-0 p-3" style="font-weight : 500;color : white; font-size : 24px; font-family : 'Noto Sans KR',sans serif; ">휴엔맘 크림 무료 체험</p>
             </div>
           </div>
         </div>
 
       </div>
+    </div>
+    
+    
+    <div v-if="this.page === 2" class="d-flex flex-column align-items-center justify-content-center" style="max-width : 500px; height : 100vh; margin : auto;">
+      <div>
+        <p class="m-0" style="font-size : 19px; font-weight : 700; font-family : 'Noto Sans KR',sans serif;">
+          잘못된 페이지 입니다
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -85,17 +126,44 @@
 export default {
   created(){
     window.onload = () => {
-      const BASE_URI = "http://admin.cosmeticfitting.com:4000"
+        console.log(this.$cookies.get("test"));
+        const BASE_URI = 'http://admin.cosmeticfitting.com:4000'
+        setTimeout(() => {
+          this.$http.post(`${BASE_URI}/user/survey_result`,{
+            id : this.$cookies.get('test'),
+            type : this.result
+          })
+          .then(res => {
+            this.type = res.data.list
+            console.log(this.type)
+          })
 
-      this.$http.post(`${BASE_URI}/user/survey_result`,{
-        customer_id : this.$cookies.get("test"),
-        id: this.$cookies.get("test"),
-        type : this.result
-      })
-      .then(res => {
-        console.log(res.data.list);
-      })
+          this.$http.post(`${BASE_URI}/user/survey_result_update`,{
+            share_count : 1,
+            maincount : 1,
+            restart_count : 1
+          })
+          .then(res => {
+            console.log('work!');
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err.res.data);
+          })
+        },2000)
 
+      // this.$http.post(`${BASE_URI}/user/survey_result`,{
+      //   ,
+      //   id: this.$cookies.get("test"),
+      //   type : this.result
+      // })
+      // .then(res => {
+      //   console.log(res.data.list);
+      // })
+      if(this.result === "undefined" || this.result === null) this.page = 2
+
+      this.$cookies.remove("key")
+      
       this.restart = this.$cookies.get("restart")
       this.maincount = this.$cookies.get("countmain")
       this.share_count = this.$cookies.get("share")
@@ -103,11 +171,12 @@ export default {
   },
   data(){
     return{
+      page : 0,
       clink : location.href,
-      share_count : 0,
+      share_count : 1,
       people : 0,
-      maincount : 0,
-      restart : 0,
+      maincount : 1,
+      restart : 1,
       count : 0,
       type: [],
       tip : [],
@@ -115,9 +184,9 @@ export default {
       feedSettings: {
         objectType: 'feed',
         content: {
-          title: '피팅',
+          title: '나랑 잘 맞는 화장품 찾기',
           imageUrl:
-            'https://img.huffingtonpost.com/asset/5d71c6bb25000090160614fe.jpeg?ops=scalefit_630_noupscale',
+            'https://fitting-a6629.web.app/img/C.40f7ffde.png',
           link: {
             mobileWebUrl: 'https://developers.kakao.com',
             webUrl: 'https://developers.kakao.com',
@@ -135,17 +204,16 @@ export default {
 
       this.restart++
       this.$cookies.set("restart", this.restart)
-      this.$http.post(`${BASE_URI}/user/survey_result_update`,{
-        share_count : this.share_count,
-        maincount : this.maincount,
-        restart_count : this.restart,
-        id : this.$cookies.get("test"),
-        customer_id : this.$cookies.get("test")
-      })
-      .then(res => {
-        console.log(res.data);
-      })
-      window.open(`./`,"_self")
+      if(this.$cookies.get("test") !== null){
+        this.$http.post(`${BASE_URI}/user/survey_result_update`,{
+          share_count : this.share_count,
+          maincount : this.maincount,
+          restart_count : this.restart
+        })
+      }
+      setTimeout(() => {
+        window.open(`./`,"_self")
+      },100)
     },
     share(){
 
@@ -153,16 +221,15 @@ export default {
 
       this.share_count++
       this.$cookies.set("share",this.share_count)
-      this.$http.post(`${BASE_URI}/user/survey_result_update`,{
-        share_count : this.share_count,
-        maincount : this.maincount,
-        restart_count : this.restart,
-        id : this.$cookies.get("test"),
-        customer_id : this.$cookies.get("test")
-      })
-      .then(res => {
-        console.log(res.data);
-      })
+      if(this.$cookies.get("test") !== null){
+          this.$http.post(`${BASE_URI}/user/survey_result_update`,{
+          share_count : this.share_count,
+          maincount : this.maincount,
+          restart_count : this.restart,
+          
+          
+        })
+      }
       
       window.Kakao.Link.sendDefault(this.feedSettings)
     },
@@ -179,47 +246,30 @@ export default {
 
         this.share_count++
         this.$cookies.set("share",this.share_count)
-        this.$http.post(`${BASE_URI}/user/survey_result_update`,{
-          share_count : this.share_count,
-          maincount : this.maincount,
-          restart_count : this.restart,
-          id : this.$cookies.get("test"),
-          customer_id : this.$cookies.get("test")
-        })
+        if(this.$cookies.get("test") !== null){
+          this.$http.post(`${BASE_URI}/user/survey_result_update`,{
+            share_count : this.share_count,
+            maincount : this.maincount,
+            restart_count : this.restart
+          })
+        }
+        alert("복사되었습니다!")
     },
     playStore(n){
       const BASE_URI = 'http://admin.cosmeticfitting.com:4000'
       if(n === 1){
         this.maincount++
         this.$cookies.set("countmain",this.maincount)
-        this.$http.post(`${BASE_URI}/user/survey_result_update`,{
-          share_count : this.share_count,
-          maincount : this.maincount,
-          restart_count : this.restart,
-          id : this.$cookies.get("test"),
-          customer_id : this.$cookies.get("test")
-        })
+          this.$http.post(`${BASE_URI}/user/survey_result_update`,{
+            share_count : this.share_count,
+            maincount : this.maincount,
+            restart_count : this.restart
+          })
       }
-      window.open(`https://bit.ly/3cp1b6g`,"_self")
+      // setTimeout(() => {
+        // window.open(`https://bit.ly/3cp1b6g`,"_page")
+      // },100)
     },
-    page(){
-      if(this.result === "OSPW"){1}
-      if(this.result === "OSPT"){2}
-      if(this.result === "OSNW"){3}
-      if(this.result === "OSNT"){4}
-      if(this.result === "ORNT"){5}
-      if(this.result === "ORNW"){6}
-      if(this.result === "ORPT"){7}
-      if(this.result === "ORPW"){8}
-      if(this.result === "DSPW"){9}
-      if(this.result === "DSPT"){10}
-      if(this.result === "DSNW"){11}
-      if(this.result === "DSNT"){12}
-      if(this.result === "DRNT"){13}
-      if(this.result === "DRNW"){14}
-      if(this.result === "DRPT"){15}
-      if(this.result === "DRPW"){16}
-    }
     
   }
 }
@@ -229,18 +279,14 @@ export default {
   li{
     margin-bottom : 14px;
     font-size : 12px;
+    
   }
   button{
     border-radius: 20px;
-    border : none;
+    border : 2px solid #ffa05a;
     text-shadow: none;
-    background-color : #ffaa3b;
-    color : white;
-    display: block;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
+    background-color : white;
+    color : #ffa05a;
     cursor:default;
   }
   button:active, button:focus{
@@ -248,5 +294,31 @@ export default {
   }
   a:hover{
     text-decoration: none;
+  }
+  li p{
+    line-height: 1.35;
+    font-size : 20px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    text-align: left;
+    color: #696969;
+    margin : 0;
+  }
+  ul{
+    list-style-type : disc;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffa05a;
+    padding-top : 15px;
   }
 </style>

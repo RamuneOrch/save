@@ -1,5 +1,5 @@
-export default {
-    // OSPW,OSPT, OSNW,OSNT, ORNT, ORNW, ORPT,ORPW,
-    // DSPW,DSPT, DSNW,DSNT, DRNT, DRNW, DRPT,DRPW
-    
-}
+export default [
+    {
+        
+    }
+]

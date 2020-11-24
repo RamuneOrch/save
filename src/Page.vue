@@ -1,50 +1,56 @@
 <template>
-  <div class="d-flex flex-column align-items-center justify-content-center bg-white"
+  <div>
+    <div v-if="this.page === 0" class="d-flex flex-column align-items-center justify-content-center bg-white"
        style="max-width : 500px; height : 100vh; margin : auto;"
-  >
+    >
 
-    <div class="w-100 mt-3" style="padding : 0 10% 0 10%;">
-      <img src="./img/fitting.png" alt="" width="67.2px" class="mb-2 ml-1">
-      <p class="float-right m-0 mr-1 pt-1" style="font-size : 20px; color :#6e7da0; font-weight : 500; ">
-        {{ this.countt === 12 ? countt : countt+1 }}/12
-      </p>
-      <input type="range" min="1" max="13" :value="countt+2" class="" style=""
-      >
+      <div class="w-100 mt-3" style="padding : 0 10% 0 10%;">
+        <img src="./img/fitting.png" alt="" width="67.2px" class="mb-2 ml-1">
+        <p class="float-right m-0 mr-1 pt-1" style="font-size : 20px; color :#6e7da0; font-weight : 500; ">
+          {{ this.countt === 12 ? countt : countt+1 }}/12
+        </p>
+        <input type="range" min="1" max="13" :value="countt+2" class="" style=""
+        >
+      </div>
+      <Hooper ref="carousel" class="" style="height : 57%;" :transition="700" :mouseDrag="false" :wheelControl="false" :keysControl="false" :touchDrag="false">
+            <Slide v-for="(people) in rest"
+                  :key="people.id" class="w-100">
+              <div class="w-100">
+                <div class="text-center p-4 mt-3 mb-1">
+                  <p style="color: #696969; white-space : pre-wrap; font-size : 22px; font-weight : bold; font-family: 'Noto Sans KR', sans-serif; letter-spacing : 1px;" class="m-0">
+                    {{ people.questions }}
+                  </p>
+                </div>
+
+                <div class="d-flex flex-column text-center m-auto pt-3" style="width : 80%;">
+                  <button @click="testButton1(0)"
+                    class="mb-4"
+                    :disabled="isDisabled"
+                  >
+                      <p style="white-space : pre-wrap; line-height: 1.35; font-size : 16px;" class="m-0">
+                        {{ people.btn1 }}
+                      </p>
+                  </button>
+                  <button @click="testButton2(1)"
+                    class=""
+                    :disabled="isDisabled"
+                  >
+                      <p style="white-space : pre-wrap; line-height: 1.35; font-size : 16px;" class="m-0">
+                        {{ people.btn2 }}
+                      </p>
+                  </button>
+                </div>
+              </div>
+            </Slide>
+      </Hooper>
     </div>
-    <Hooper ref="carousel" class="" style="height : 57%;" :transition="700" :mouseDrag="false" :wheelControl="false" :keysControl="false" :touchDrag="false">
-          <Slide v-for="(people, index) in rest"
-                :key="index" class="w-100">
-            <div class="w-100">
-              <div class="text-center p-4 mt-3 mb-1">
-                <p style="font-size : 23px; color: #696969; white-space : pre-wrap; font-size : 25px; font-weight : bold; font-family: 'Noto Sans KR', sans-serif; letter-spacing : 1px;" class="m-0">
-                  {{ people.id }}
-                </p>
-              </div>
-
-              <div class="d-flex flex-column text-center m-auto pt-3" style="width : 80%;">
-                <button @click="testButton1(0)"
-                  class="mb-4"
-                  :disabled="isDisabled"
-                >
-                    <p style="white-space : pre-wrap; line-height: 1.35; font-size : 18px;" class="m-0">
-                      {{ people.btn1 }}
-                    </p>
-                </button>
-                <button @click="testButton2(1)"
-                  class=""
-                  :disabled="isDisabled"
-                >
-                    <p style="white-space : pre-wrap; line-height: 1.35; font-size : 18px;" class="m-0">
-                      {{ people.btn2 }}
-                    </p>
-                </button>
-              </div>
-            </div>
-          </Slide>
-    </Hooper>
-
-    
-
+    <div v-if="this.page === 1" class="d-flex flex-column align-items-center justify-content-center" style="max-width : 500px; height : 100vh; margin : auto;">
+      <div>
+        <p class="m-0" style="font-size : 19px; font-weight : 700; font-family : 'Noto Sans KR',sans serif;">
+          잘못된 페이지 입니다
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,6 +61,8 @@ import 'hooper/dist/hooper.css';
 export default {
   created(){
     window.onload = () => {
+      if(this.$cookies.get('test') === null) this.page = 1
+
       setTimeout(() => {
         this.isDisabled = false
       },900)
@@ -63,10 +71,13 @@ export default {
       .then(res => {
         this.rest = res.data.list
       })
+
+      
     }
   },
   data(){
     return{
+      page : 0,
       click : 0,
       btn1: 0,
       btn2: 0,
@@ -97,7 +108,6 @@ export default {
   methods:{
     testButton1(n){
       this.$refs.carousel.slideNext();
-
       if(this.countt === 0 || this.countt === 4 || this.countt === 8){
         this.odnum = this.odnum + n
 
@@ -142,10 +152,27 @@ export default {
         }
       }
       this.countt++
+
       if(this.countt === 12){
+        const BASE_URI = "http://admin.cosmeticfitting.com:4000"
         this.resultString = this.od + this.sr + this.pn + this.wt
-        // console.log(this.resultString);
-        window.open(`./Loading?id=${this.resultString}`, "_self")
+          // console.log(this.resultString);
+          // console.log(typeof(this.$cookies.get("key")));
+          console.log(this.$cookies.get("test"));
+          console.log(this.resultString)
+          if(Number(this.$cookies.get("key")) === 1){
+            this.$http.post(`${BASE_URI}/user/survey_result`,{
+              customer_id : this.$cookies.get("test"),
+              id: this.$cookies.get("test"),
+              type : this.resultString
+            })
+            .then(res => {
+              console.log(res.data);
+            })
+          }
+        setTimeout(() => {
+          window.open(`./Loading?id=${this.resultString}`, "_self")
+        },100)
       }
       
       this.isDisabled = true
@@ -204,15 +231,27 @@ export default {
       this.countt++
 
       if(this.countt === 12){
+        const BASE_URI = "http://admin.cosmeticfitting.com:4000"
         this.resultString = this.od + this.sr + this.pn + this.wt
-        // console.log(this.resultString);
-        window.open(`./Loading?id=${this.resultString}`, "_self")
+          // console.log(this.resultString);
+          // console.log(typeof(this.$cookies.get("key")));
+          if(Number(this.$cookies.get("key")) === 1){
+            this.$http.post(`${BASE_URI}/user/survey_result`,{
+              customer_id : this.$cookies.get("test"),
+              id: this.$cookies.get("test"),
+              type : this.resultString
+            })
+          }
+        setTimeout(() => {
+          window.open(`./Loading?id=${this.resultString}`, "_self")
+        },100)
       }
       
       this.isDisabled = true
       setTimeout(() => {
         this.isDisabled = false
       },700)
+      
       
 
     },

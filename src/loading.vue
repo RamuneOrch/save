@@ -9,7 +9,7 @@
             >
                 
     </loading>
-    <img src="./Spinner-1s-200px.gif" alt="" width="100px;" 
+    <img src="./img/Spin.gif" alt="" width="100px;" 
         style="position: absolute; top:45% ;left: 50%; transform:translateX(-50%);">
 
     <!-- <button @click="doAjax">
@@ -27,6 +27,7 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
     created(){
         // console.log("Hello");
+        this.$cookies.remove("key")
         window.addEventListener("load", this.doAjax)
     },
     props:{
@@ -52,7 +53,7 @@ export default {
             },3000)
         },
         onCancel() {
-            console.log('User cancelled the loader.')
+            // console.log('User cancelled the loader.')
         },
         pageChange(){
             this.isLoading = false
