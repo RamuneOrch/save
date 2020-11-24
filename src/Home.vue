@@ -7,7 +7,7 @@
 
       <div class="text-center">
 
-        <img src="./img/fitting.png" class="mb-4" alt="" width="67.2px" style="">
+        <img src="./img/2.png" class="mb-4" alt=""  style="">
         
         <h2 style="" class="m-0">
           내 피부에<br>
@@ -114,7 +114,7 @@ export default {
         font-family:'Noto Sans KR', sans-serif;
       }
       .main{
-        background-image: url("./img/bg2.png");
+        background-image: url("./img/C.png");
         background-position : center bottom;
         background-repeat: no-repeat;
         background-size: 100%;
