@@ -5,13 +5,13 @@
     >
       <div v-if="true" style="color : #6e7da0">
         <div class="pt-4 text-center" style="margin-top : 17%; 'Noto Sans KR',sans serif;">
-          <img src="./img/fitting.png" alt="" style=" margin-bottom : 20px; ">
+          <img src="./img/fitting.png" alt="" style=" margin-bottom : 20px;">
           <p class="m-0" style="font-size : 18px; font-family : 'Noto Sans KR',sans serif;">
             {{ this.result }} 피부타입에 잘 맞는 화장품
           </p>
-          <p class="m-0" style="line-height : 48px; font-size : 40px; margin-top : 15px; font-weight:700;font-family :  'Noto Sans KR',sans serif;">{{ }}</p>
+          <p class="m-0" style="line-height : 48px; font-size : 40px; margin-top : 15px; font-weight:700;font-family :  'Noto Sans KR',sans serif;">{{ type[0].tip_info }}</p>
           <div class="rounded m-0" style="">
-              <img src="" alt="1" width="100%">
+              <img :src="type[0].image" alt="1" width="100%">
               </div>
           </div>
 
@@ -27,46 +27,23 @@
                   letter-spacing: normal;
                   text-align: center;
                   color: #ffa05a;
+                  white-space : pre-wrap;
                "
             >
-              {{}}
+              {{ type[0].info1 }}
             </p>
         </div>
 
-        <div class="" style="padding : 20px; border-radius : 13px; border: solid 2px #6f7e9f; background-color : rgba(145, 160, 200, 0.05);">
-          <div>
+        <div class="" style="padding : 20px; padding-top:30px; border-radius : 13px; border: solid 2px #6f7e9f; background-color : rgba(145, 160, 200, 0.05);">
+          <div v-for="(people, index) in dataa[this.idx]" :key="index">
 
-            <ul class="pl-4 m-0" style="color : ">
-              <!-- <li v-for="(people, index) in type" :key="index">
-                {{ people.type_info }} -->
-              <!-- </li> -->
-              <li>
-                <p>
-                  피부가 감성적이에요. 가을을 타요. 일단 찬바람 불면 립밤은 필수에요.
-                </p>
-              </li>
-              <li>
-                <p>
-                  처음 보는 화장품은 나에겐 두려움의 대상. 일단 겁부터 나요. 따갑거나 얼굴이 뒤집어지거나 어떤 후폭풍이 올지 몰라요.
-                </p>
-              </li>
-              <li>
-                <p>
-                  환경이 바뀌는 매 순간마다 내 피부에 어떤 문제가 튀어나올지 몰라요. 고통의 연속.
-                </p>
-              </li>
-              <li>
-                <p>
-                  반복되는 피부 염증으로 피부색이 고르지 않아 속상해요. 이놈의 색소 침착.. 레이저 치료가 효과가 있다 해서 알아보는 중이에요!
-                </p>
-              </li>
-              <li>
-                <p>
-                  피부가 거칠고 칙칙해 보이기도 하지만, 그래도 피부 탄력만큼은 자신 있어요!
-                </p>
-              </li>
-              
-            </ul>
+              <ul class="pl-4 m-0" style="color : "  v-if="people !== result">
+                <li>
+                  <p >
+                    {{ people }}
+                  </p>
+                </li>
+              </ul>
           </div>
         </div>
 
@@ -122,44 +99,21 @@
 </template>
 
 <script>
+import dataa from './data.js'
 
 export default {
   created(){
     window.onload = () => {
-        console.log(this.$cookies.get("test"));
+        this.result = this.query
         const BASE_URI = 'http://admin.cosmeticfitting.com:4000'
-        setTimeout(() => {
-          this.$http.post(`${BASE_URI}/user/survey_result`,{
-            id : this.$cookies.get('test'),
-            type : this.result
-          })
-          .then(res => {
-            this.type = res.data.list
-            console.log(this.type)
-          })
+        this.$http.post(`${BASE_URI}/user/survey_result`,{
+          id : this.$cookies.get('test'),
+          type : this.result
+        })
+        .then(res => {
+          this.type = res.data.list
+        })
 
-          this.$http.post(`${BASE_URI}/user/survey_result_update`,{
-            share_count : 1,
-            maincount : 1,
-            restart_count : 1
-          })
-          .then(res => {
-            console.log('work!');
-            console.log(res.data);
-          })
-          .catch((err) => {
-            console.log(err.res.data);
-          })
-        },2000)
-
-      // this.$http.post(`${BASE_URI}/user/survey_result`,{
-      //   ,
-      //   id: this.$cookies.get("test"),
-      //   type : this.result
-      // })
-      // .then(res => {
-      //   console.log(res.data.list);
-      // })
       if(this.result === "undefined" || this.result === null) this.page = 2
 
       this.$cookies.remove("key")
@@ -167,10 +121,36 @@ export default {
       this.restart = this.$cookies.get("restart")
       this.maincount = this.$cookies.get("countmain")
       this.share_count = this.$cookies.get("share")
+      
+      if(this.result === "DSPT"){this.idx = 0}
+      else if(this.result === "DSNT"){this.idx = 1}
+
+      else if(this.result === "DSPW"){this.idx = 2}
+
+      else if(this.result === "DSNW"){this.idx = 3}
+      
+      else if(this.result === "DRPT"){this.idx = 4}
+
+      else if(this.result === "DRNT"){this.idx = 5}
+
+      else if(this.result === "DRPW"){this.idx = 6}
+
+      else if(this.result === "DRNW"){this.idx = 7}
+
+      else if(this.result === "DSPT"){this.idx = 8}
+      else if(this.result === "DSPT"){this.idx = 9}
+      else if(this.result === "DSPT"){this.idx = 10}
+      else if(this.result === "DSPT"){this.idx = 11}
+      else if(this.result === "DSPT"){this.idx = 12}
+      else if(this.result === "DSPT"){this.idx = 13}
+      else if(this.result === "DSPT"){this.idx = 14}
+      else if(this.result === "DSPT"){this.idx = 15}
     }
   },
   data(){
     return{
+      idx : 0,
+      dataa,
       page : 0,
       clink : location.href,
       share_count : 1,
@@ -186,7 +166,7 @@ export default {
         content: {
           title: '나랑 잘 맞는 화장품 찾기',
           imageUrl:
-            'https://fitting-a6629.web.app/img/C.40f7ffde.png',
+            'https://ramuneorch.github.io/firstProject/img/C.40f7ffde.png',
           link: {
             mobileWebUrl: 'https://developers.kakao.com',
             webUrl: 'https://developers.kakao.com',
@@ -208,7 +188,8 @@ export default {
         this.$http.post(`${BASE_URI}/user/survey_result_update`,{
           share_count : this.share_count,
           maincount : this.maincount,
-          restart_count : this.restart
+          restart_count : this.restart,
+          id : this.$cookies.get('test')
         })
       }
       setTimeout(() => {
@@ -226,7 +207,7 @@ export default {
           share_count : this.share_count,
           maincount : this.maincount,
           restart_count : this.restart,
-          
+          id : this.$cookies.get('test')
           
         })
       }
@@ -250,7 +231,8 @@ export default {
           this.$http.post(`${BASE_URI}/user/survey_result_update`,{
             share_count : this.share_count,
             maincount : this.maincount,
-            restart_count : this.restart
+            restart_count : this.restart,
+            id : this.$cookies.get('test')
           })
         }
         alert("복사되었습니다!")
@@ -263,12 +245,13 @@ export default {
           this.$http.post(`${BASE_URI}/user/survey_result_update`,{
             share_count : this.share_count,
             maincount : this.maincount,
-            restart_count : this.restart
+            restart_count : this.restart,
+            id : this.$cookies.get('test')
           })
       }
-      // setTimeout(() => {
-        // window.open(`https://bit.ly/3cp1b6g`,"_page")
-      // },100)
+      setTimeout(() => {
+        window.open(`https://bit.ly/3cp1b6g`,"_page")
+      },100)
     },
     
   }
@@ -308,6 +291,7 @@ export default {
     text-align: left;
     color: #696969;
     margin : 0;
+    white-space: pre-wrap;
   }
   ul{
     list-style-type : disc;
@@ -319,6 +303,5 @@ export default {
     letter-spacing: normal;
     text-align: left;
     color: #ffa05a;
-    padding-top : 15px;
   }
 </style>

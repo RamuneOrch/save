@@ -67,7 +67,7 @@ export default {
         this.$http.post(`http://admin.cosmeticfitting.com:4000/user/survey`)
         .then(res => {
           this.people = res.data.count
-          console.log(res.data.list);
+          // console.log(res.data.list);
         })
 
         this.$cookies.remove("test")
@@ -86,7 +86,6 @@ export default {
         this.$http.post(`http://admin.cosmeticfitting.com:4000/user/survey_start`)
         .then(res => {
           this.cookiee = res.data.id
-          console.log(this.cookiee);
         })
       },100)
 
@@ -115,7 +114,7 @@ export default {
         font-family:'Noto Sans KR', sans-serif;
       }
       .main{
-        background-image: url("./img/C.png");
+        background-image: url("./img/bg2.png");
         background-position : center bottom;
         background-repeat: no-repeat;
         background-size: 100%;

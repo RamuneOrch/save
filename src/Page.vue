@@ -156,18 +156,11 @@ export default {
       if(this.countt === 12){
         const BASE_URI = "http://admin.cosmeticfitting.com:4000"
         this.resultString = this.od + this.sr + this.pn + this.wt
-          // console.log(this.resultString);
-          // console.log(typeof(this.$cookies.get("key")));
-          console.log(this.$cookies.get("test"));
-          console.log(this.resultString)
           if(Number(this.$cookies.get("key")) === 1){
             this.$http.post(`${BASE_URI}/user/survey_result`,{
               customer_id : this.$cookies.get("test"),
               id: this.$cookies.get("test"),
               type : this.resultString
-            })
-            .then(res => {
-              console.log(res.data);
             })
           }
         setTimeout(() => {
@@ -233,8 +226,6 @@ export default {
       if(this.countt === 12){
         const BASE_URI = "http://admin.cosmeticfitting.com:4000"
         this.resultString = this.od + this.sr + this.pn + this.wt
-          // console.log(this.resultString);
-          // console.log(typeof(this.$cookies.get("key")));
           if(Number(this.$cookies.get("key")) === 1){
             this.$http.post(`${BASE_URI}/user/survey_result`,{
               customer_id : this.$cookies.get("test"),
