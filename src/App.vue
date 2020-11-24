@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="main1" style="background-color : white; margin : 0;">
+  <div id="app" class="main1" style="">
       <router-view />
   </div>
 </template>
@@ -14,4 +14,14 @@ export default {
 </script>
 
 <style scoped>
+  @media(orientation: portrait ){
+      html { 
+        transform-origin: top left; 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100vh; 
+        height: 100vw; 
+      } 
+    }
 </style>

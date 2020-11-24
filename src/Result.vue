@@ -166,7 +166,7 @@ export default {
         content: {
           title: '나랑 잘 맞는 화장품 찾기',
           imageUrl:
-            'https://ramuneorch.github.io/firstProject/img/C.40f7ffde.png',
+            'https://ramuneorch.github.io/firstProject/img/2.9916156e.png',
           link: {
             mobileWebUrl: 'https://developers.kakao.com',
             webUrl: 'https://developers.kakao.com',

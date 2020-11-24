@@ -7,7 +7,7 @@
 
       <div class="text-center">
 
-        <img src="./img/2.png" class="mb-4" alt=""  style="">
+        <img src="./img/fitting.png" class="mb-4" alt="" width="67.2px" style="">
         
         <h2 style="" class="m-0">
           내 피부에<br>
@@ -34,7 +34,7 @@
         </div>
         
 
-          <p class="" id="value" style="font-size : 18px; padding-top :5%; line-height : 21px; font-weight : bold; margin-bottom : 71%;color : #6e7da0">
+          <p class="" id="value" style="font-size : 18px; padding-top :5%; line-height : 21px; font-weight : bold; margin-bottom : 82%;color : #6e7da0">
             현재 총 {{ people }}명이 참여했어요.
           </p>
       </div>
@@ -114,7 +114,7 @@ export default {
         font-family:'Noto Sans KR', sans-serif;
       }
       .main{
-        background-image: url("./img/C.png");
+        background-image: url("./img/bg2.png");
         background-position : center bottom;
         background-repeat: no-repeat;
         background-size: 100%;
